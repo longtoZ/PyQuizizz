@@ -65,19 +65,14 @@ def scrape(link):
 
             for j in cor:
                 if j == 'a':
-                    lst[2][0] = lst[2][0]
                     lst[3].append(ans[0])
                 elif j == 'b':
-                    lst[2][1] = lst[2][1]
                     lst[3].append(ans[1])
                 elif j == 'c':
-                    lst[2][2] = lst[2][2]
                     lst[3].append(ans[2])
                 elif j == 'd':
-                    lst[2][3] = lst[2][3]
                     lst[3].append(ans[3])
                 elif j == 'e':
-                    lst[2][4] = lst[2][4]
                     lst[3].append(ans[4])
                 else:
                     lst[3].append(cor)

@@ -1,3 +1,2 @@
-venv/Scripts
-venv/pyvenv.cfg
+venv/
 .vscode/

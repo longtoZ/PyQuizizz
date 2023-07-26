@@ -107,19 +107,20 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/hide-nav.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
 <script type="text/javascript">
-
-	let text = document.querySelector('.json-data').textContent.replaceAll('\n', '\\n').replace('\t', '\\t')
 	let data = ''
-	while (data == '') {
-		try {
-			data = JSON.parse(text)
-		} catch(e) {
-			if (e.name == 'SyntaxError' && e.message.includes("Expected ',' or ']' after array element in JSON at position")) {
-				const err = e.message
-				const pos = parseInt(err.substring(err.search('position'), err.length).replace('position ', '')) - 1
-				text = text.replaceAt(pos, '\\"')
-			} else {
-				break
+	if (document.querySelector('.json-data')) {
+		let text = document.querySelector('.json-data').textContent.replaceAll('\n', '\\n').replace('\t', '\\t')
+		while (data == '') {
+			try {
+				data = JSON.parse(text)
+			} catch(e) {
+				if (e.name == 'SyntaxError' && e.message.includes("Expected ',' or ']' after array element in JSON at position")) {
+					const err = e.message
+					const pos = parseInt(err.substring(err.search('position'), err.length).replace('position ', '')) - 1
+					text = text.replaceAt(pos, '\\"')
+				} else {
+					break
+				}
 			}
 		}
 	}
