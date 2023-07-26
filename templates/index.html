@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+	<title>Quizizz Cheat</title>
+</head>
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div class="home"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" style="height: 40px;"></div>
+
+			<div class="links">
+				<a class="products" href="#">
+					Products
+					<i class="fi fi-sr-angle-small-down"></i>
+				</a>
+				<a class="support" href="#">
+					Support
+					<i class="fi fi-sr-angle-small-down"></i>
+				</a>
+			</div>
+		</div>
+
+		<div id="content">
+			<div class="title-container flex-content">
+				<div class="main-title"><span class="neu-txt">Quizizz cheat using Python</span></div>
+				<div class="main-desc">These are random words I write for description while my brain is not coming out with any good idea.</div>
+			</div>
+
+			<div class="search-container flex-content">
+				<div class="search">
+					<form action="/submit" method="post">
+						<input class="search-bar" name="search-bar" type="text" placeholder="Enter the link here...">
+						<button type="submit" class="submit" style="display:none"></button>
+					</form>
+					<div class="search-btn flex-content">
+						<button class="clear">
+							<i class="fi fi-sr-cross-circle"></i>
+							<span class="tooltiptext">Clear</span>
+						</button>
+						<button class="send">
+							<i class="fi fi-sr-paper-plane-top"></i>
+							<span class="tooltiptext">Send</span>
+						</button>
+					</div>
+					<h3 class="error" style="display: none; color: tomato; text-align: center; width: 100%; margin-top: 30px; font-weight: 400; font-size: 16px;"></h3>
+				</div>
+			</div>
+
+			<div class="result-container flex-content">
+				<div class="result-title" style="font-size: 50px; font-weight: 500;">{{ title }}</div>
+				<div class="table-container flex-content">
+					{% if stat=='success' %}
+						<div class="filter">
+							<input type="text" class="find" placeholder="Find words..." oninput="findWord()">
+							<div class="show-options options-hide">Show options</div>
+							<div class="save-type">Save</div>
+						</div>
+						<div class="json-data" style="display: none">{{ text|tojson }}</div>
+						<table class="result">
+							<tr>
+								<th>Question</th>
+								<th>Answer</th>
+							</tr>
+							{% for i in text %}
+								<tr>
+									<td><div>&lt;b&gt;{{i[0]}}. {{i[1].replace('\n', '<br>')}}&lt;/b&gt; &lt;br&gt; &lt;br&gt; &lt;p class="options">{{"<br>".join(i[2])}}&lt;/p&gt;</div></td>
+									<td><div>{{"<br>".join(i[3])}}</div></td>
+								</tr>
+							{% endfor %}
+						</table>
+					{% elif stat=='failed' %}
+						<h3 style="color: tomato">Unexpected error! Please try again or paste another link.</h3>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+		<div id="footer">
+			<div class="footer-container">
+				<div class="brand-name">
+					<img src="{{ url_for('static', filename='img/logo-white.png') }}" alt="logo" style="height: 40px;">
+				</div>
+				<div class="links">
+					<a href="#">Products</a>
+					<a href="#">Blog</a>
+					<a href="#">Shop</a>
+					<a href="#">Contacts</a>
+				</div>
+				<div class="copyright">
+					© Copyright 2023. PyQuizizz by <b><a href="https://github.com/longtoZ" style="color: var(--primary-white); text-decoration: none">Nautilus</a></b>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/hide-nav.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script type="text/javascript">
+
+	let text = document.querySelector('.json-data').textContent.replaceAll('\n', '\\n').replace('\t', '\\t')
+	let data = ''
+	while (data == '') {
+		try {
+			data = JSON.parse(text)
+		} catch(e) {
+			if (e.name == 'SyntaxError' && e.message.includes("Expected ',' or ']' after array element in JSON at position")) {
+				const err = e.message
+				const pos = parseInt(err.substring(err.search('position'), err.length).replace('position ', '')) - 1
+				text = text.replaceAt(pos, '\\"')
+			} else {
+				break
+			}
+		}
+	}
+
+	
+</script>
+</html>
