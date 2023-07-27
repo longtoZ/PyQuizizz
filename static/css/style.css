@@ -357,6 +357,10 @@ tr:nth-child(even) div {
     box-shadow: var(--bs-out-light);
 } */
 
+svg path, svg rect {
+    fill: var(--primary-grey);
+}
+
 #footer {
     margin-top: 200px;
 }

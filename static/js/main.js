@@ -9,8 +9,8 @@ document.querySelector('.send').addEventListener('click', function() {
         error.style.display = ''
         error.textContent = ''
         document.querySelector('.submit').click()
+        document.querySelector('.loader').style.display = 'block'
     }
-
 })
 
 document.querySelector('.clear').addEventListener('click', function() {
