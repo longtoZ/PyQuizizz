@@ -38,8 +38,8 @@ def scrape(link):
     options.add_argument("user-agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'")
 
     # service = Service("/opt/render/project/.render/chrome/opt/google/chrome/chromedriver")
-    # service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(options=options)
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
 
     driver.get(link)
     alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
