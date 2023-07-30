@@ -24,7 +24,7 @@ def scrape(link):
     link = 'https://quizizz.com/print/quiz/' + sorted(link.split('/'), key=len)[-1]
 
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
     # options.add_argument("--start-maximized")
     options.add_argument("--disable-3d-apis")
     options.add_argument('--ignore-certificate-errors')
