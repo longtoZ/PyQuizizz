@@ -4,6 +4,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 app = Flask(__name__)
 
 @app.route('/')
@@ -36,7 +37,8 @@ def scrape(link):
     options.add_argument('--no-sandbox')
     options.add_argument("user-agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'")
 
-    service = Service("/opt/render/project/.render/chrome/opt/google/chrome/chromedriver")
+    # service = Service("/opt/render/project/.render/chrome/opt/google/chrome/chromedriver")
+    service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
 
     driver.get(link)
