@@ -47,11 +47,12 @@ def scrape(link):
 
     try:
         print('Preparing for data...')
-        others_btn = list(WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.flex-1.flex.h-13 button'))))
+        others_btn = list(WebDriverWait(driver, 30).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.flex-1.flex.h-13 button'))))
+        driver.execute_script("window.scrollTo(0, document.documentElement.scrollHeight)")
         print('Success!')
         others_btn[len(others_btn)-1].click()
         title = driver.find_element(By.CSS_SELECTOR, '.font-normal.leading-6.text-4').text
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'switch__label'))).click()
+        WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.CLASS_NAME, 'switch__label'))).click()
         data = driver.find_elements(By.CSS_SELECTOR, ".p-b-a-always > .flex")
         correct = driver.find_elements(By.CSS_SELECTOR, ".grid.gap-4.m-4.grid-cols-4 .flex")
 
