@@ -2,7 +2,7 @@
 
 This project automatically gets full questions, options and answers for each Quizizz link. It also allows you to search for keywords and download the table as *.csv* file.
 
-# Librabries/Modules
+# Libraries/Modules
 
 **1. Backend:**
 - Flask
