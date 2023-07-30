@@ -108,6 +108,11 @@ body {
     text-align: center;
 }
 
+.main-desc {
+    text-align: center;
+    margin: 0 10px;
+}
+
 .neu-txt {
     font-weight: bold;
 	/* color: var(--primary-white); */
@@ -362,7 +367,7 @@ svg path, svg rect {
 }
 
 #footer {
-    margin-top: 200px;
+    margin-top: 90%;
 }
 
 .footer-container {
@@ -396,4 +401,41 @@ svg path, svg rect {
     width: 90%;
     text-align: center;
     padding-top: 20px;
+}
+
+@media only screen and (max-width: 46.1875em) {
+
+    #header .links {
+        display: none;
+    }
+
+    .main-title, .result-title {
+        font-size: 60px;
+    }
+
+    .search-bar {
+        width: 250px;
+    }
+
+    .filter {
+        height: 120px;
+    }
+
+    .filter input {
+        position: relative;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .filter div {
+        position: initial;
+    }
+
+    tr div {
+        margin: 10px;
+    }
+
+    .table-container {
+        width: 90%;
+    }
 }

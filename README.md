@@ -1,6 +1,8 @@
 # About PyQuizizz
 
-This project automatically gets full questions, options and answers for each Quizizz link. It also allows you to search for keywords and download the table as *.csv* file.
+- This project automatically gets full questions, options and answers for each Quizizz link. It also allows you to search for keywords and download the table as *.csv* file.
+- Demo video [here](https://drive.google.com/file/d/1oIElxsZWVVzzJ8ujdArjv_fNPrD-8lEA/view?usp=sharing).
+
 
 # Libraries/Modules
 
@@ -45,4 +47,5 @@ python main.py
 ```
 
 **5. View the app**
+- Change this line in `main.py` to `driver = webdriver.Chrome(service=Service("chromedriver.exe"), options=options)`
 - Go to `http://127.0.0.1:5000`

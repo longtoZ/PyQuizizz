@@ -4,7 +4,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 app = Flask(__name__)
 
 @app.route('/')
@@ -25,7 +24,6 @@ def scrape(link):
 
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
-    # options.add_argument("--start-maximized")
     options.add_argument("--disable-3d-apis")
     options.add_argument('--ignore-certificate-errors')
     options.add_argument('--allow-running-insecure-content')
