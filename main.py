@@ -24,22 +24,20 @@ def scrape(link):
     link = 'https://quizizz.com/print/quiz/' + sorted(link.split('/'), key=len)[-1]
 
     options = webdriver.ChromeOptions()
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
     # options.add_argument("--start-maximized")
-    options.add_argument("--disable-3d-apis")
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument('--allow-running-insecure-content')
-    options.add_argument("--disable-extensions")
-    options.add_argument("--proxy-server='direct://'")
-    options.add_argument("--proxy-bypass-list=*")
-    options.add_argument('--disable-gpu')
-    options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--no-sandbox')
+    options.add_argument('--headless')
+    options.add_argument('--ignore-certificate-errors')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-extensions')
+    options.add_argument('--disable-gpu')
     options.add_argument("user-agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'")
 
     # service = Service("/opt/render/project/.render/chrome/opt/google/chrome/chromedriver")
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
+    # service = Service(ChromeDriverManager().install())
+    # service = Service("chromedriver.exe")
+    driver = webdriver.Chrome(options=options)
 
     driver.get(link)
     alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -48,7 +46,9 @@ def scrape(link):
     final = []
 
     try:
+        print('Preparing for data...')
         others_btn = list(WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.flex-1.flex.h-13 button'))))
+        print('Success!')
         others_btn[len(others_btn)-1].click()
         title = driver.find_element(By.CSS_SELECTOR, '.font-normal.leading-6.text-4').text
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'switch__label'))).click()
