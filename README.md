@@ -9,10 +9,10 @@
 **1. Backend:**
 - Flask
 - Selenium
+- Javascript
 
 **2. Frontend:**
 - HTML, CSS
-- Javascript
 
 # Setup & Installation
 
@@ -42,10 +42,11 @@ pip install -r requirements.txt
 ```
 
 **4. Run the app**
+- Change this line in `main.py` to `driver = webdriver.Chrome(service=Service("chromedriver.exe"), options=options)`
 ```
 python main.py
 ```
 
 **5. View the app**
-- Change this line in `main.py` to `driver = webdriver.Chrome(service=Service("chromedriver.exe"), options=options)`
+
 - Go to `http://127.0.0.1:5000`
